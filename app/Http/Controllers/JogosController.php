@@ -25,6 +25,12 @@ class JogosController extends Controller
     public function edit($id)
     {
       $jogos = Jogos::where('id',$id)->first();
-      dd($jogos);
+    
+      if(!empty($jogos)){
+            return view('jogos.edit',['jogos'=>$jogos]);
+        }
+      else{
+        return redirect()->route('jogos-index');       
+      } 
     }
 }
