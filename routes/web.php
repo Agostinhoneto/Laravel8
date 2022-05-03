@@ -30,3 +30,6 @@ Route::prefix('jogos')->group(function(){
 Route::fallback(function(){
    return "Erro@";
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
