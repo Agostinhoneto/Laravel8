@@ -7,8 +7,9 @@
       <br>
       <h1>Editar Jogo</h1>
         <hr>
-        <form action="{{route('jogos-store')}}" method="POST">
+        <form action="{{route('jogos-update',['id'=>$jogos->id]) }}" method="POST">
           @csrf
+          @method('PUT')
           <div class="form-group">
             <div class="form-group">
               <label for="nome">Nome: </label>
