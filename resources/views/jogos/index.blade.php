@@ -25,6 +25,11 @@
         <th>{{$jogo->valor}}</th>
         <th>
           <a href="{{ route('jogos-edit', ['id'=>$jogo->id])}}">Editar</a>
+          <form action="{{route('jogos-destroy', ['id'=>$jogo->id]) }}" method="POST">
+            @csrf
+            @method('delete') 
+            <button type="submit" class="btn btn-danger">Deletar</button>
+          </form>
         </th>
       </tr>
       @endforeach
@@ -32,5 +37,6 @@
   </table>
   <br>
   <a href="{{route('jogos-create')}}" class="btn btn-primary">Add Novo Jogo</a> 
+  
 </div>  
 @endsection

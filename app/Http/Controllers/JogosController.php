@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\JogosStoreRequest;
 use App\Models\Jogos;
 use Illuminate\Http\Request;
 
@@ -16,10 +17,19 @@ class JogosController extends Controller
     {
        return view('jogos.create');
     }
-    public function store(Request $request)
-    {
+
+    public function store(JogosStoreRequest $request)
+    {      
         Jogos::create($request->all());
         return redirect()->route('jogos-index');
+    }
+
+    public function storeJogos(Request $request)
+    {
+      $request->validate([
+        'name' => 'required',
+        'categoria' => 'required',
+      ]);
     }
 
     public function edit($id)
@@ -45,5 +55,13 @@ class JogosController extends Controller
 
       Jogos::where('id',$id)->update($data);
       return redirect()->route('jogos-index');      
+    }
+
+    public function destroy($id)
+    {
+      //dd($id);
+      Jogos::where('id',$id)->delete();
+      return redirect()->route('jogos-index');   
+
     }
 }
